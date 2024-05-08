@@ -1,13 +1,11 @@
-import HeroImg from '../assets/Bissau_College_Hero_Img.jpg'
-import Img1 from '../assets/hero_img.jpeg'
+import HeroImg from '../assets/BC_College.jpg'
+import Img1 from '../assets/BC_College.jpg'
 import '../App.css'
 const Home = () => {
     return (
         <div>
             <div className='relative'>
-                <p className='absolute top-0 left-0 text-3xl font-bold text-white p-5'>Logo</p>
-                <img src={HeroImg} className='w-full max-md:h-[768px] max-md:overflow-x-hidden max-md:object-cover' alt="" />
-                <p className='absolute text-white p-5 bottom-0 left-0 text-5xl lg:text-[70px] font-extrabold leading-[65px]'>Bissau College Shillong</p>
+                <img src={HeroImg} className='w-full overflow-hidden h-[550px] max-md:h-[768px] max-md:overflow-x-hidden max-md:object-cover' alt="" />
                 <div className='absolute top-0 bottom-0 left-0 right-0 flex justify-center items-center'>
                     <button className="button bg-white text-black p-5">
                         <span className='text-2xl font-bold p-5'>Admission Open</span> <br /><span className='text-blue-600 font-bold'>Click to apply</span>
@@ -36,12 +34,12 @@ const Home = () => {
                 </div>
             </div>
 
-            <div className='pb-10'>
+            <div className='pb-20 bg-white'>
                 <p className='text-center text-3xl p-5 pt-20 font-extrabold'>Photo Gallery</p>
                 <div className='flex max-sm:flex-col justify-evenly max-sm:gap-10 p-3'>
-                    <img src={Img1} className='lg:w-[400px]' alt="" />
-                    <img src={Img1} className='lg:w-[400px]' alt="" />
-                    <img src={Img1} className='lg:w-[400px]' alt="" />
+                    <img src={Img1} className='lg:w-[400px] shadow-xl' alt="" />
+                    <img src={Img1} className='lg:w-[400px] shadow-xl' alt="" />
+                    <img src={Img1} className='lg:w-[400px] shadow-xl' alt="" />
                 </div>
             </div>
         </div>
