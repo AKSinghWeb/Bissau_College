@@ -39,6 +39,11 @@ const ApplicationForm = () => {
 
   const [selectedType, setSelectedType] = useState('degree')
 
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    console.log(formData)
+  }
+
   return (
     <div>
       <div className="flex justify-center p-20">
@@ -156,7 +161,7 @@ const ApplicationForm = () => {
               onChange={handleInputChange}
             />
             <Field
-              label="Name and the place of school/college attended last"
+              label="Name and the place of institution attended last"
               id="schoolCollegeName"
               value={formData.schoolCollegeName}
               onChange={handleInputChange}
@@ -248,8 +253,8 @@ const ApplicationForm = () => {
                     onChange={handleInputChange}
                   />
                 </div>
-                <div>3. Environmental Science</div>
-                <div>
+                <div className="mt-6">3. Environmental Science</div>
+                <div className="mt-6">
                   4. Optional Papers any three from the following:
                   <br />
                   Economics, Education, History, Music(Western), Psychology,
@@ -265,7 +270,7 @@ const ApplicationForm = () => {
                   />
                 </div>
 
-                <div>
+                <div className="mt-6">
                   Vocational Stream: Horticulture, Travel and Tourism Techniques
                   <br />
                   <input
@@ -318,7 +323,10 @@ const ApplicationForm = () => {
           )}
 
           <div className="flex justify-center mt-10">
-            <button className="bg-cyan-600 text-white px-5 py-2 rounded-md">
+            <button
+              onClick={handleSubmit}
+              className="bg-cyan-600 text-white px-5 py-2 rounded-md"
+            >
               Submit
             </button>
           </div>

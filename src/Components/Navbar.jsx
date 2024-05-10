@@ -49,7 +49,6 @@ const Navbar = () => {
         </div>
         <div className="flex text-xl items-center gap-5">
           <Link to={'/'}>Home</Link>
-          <Link to={'/about'}>About</Link>
           <Link to={'/academics'}>Academics</Link>
           <Link to={'/facilities'}>Facilities</Link>
           <Link to={'/admission-2024-25'}>
