@@ -237,7 +237,7 @@ const ApplicationForm = () => {
             </div>
           </div>
 
-          {selectedType === 'xixii' ? ( // Class XI/XII
+          {selectedType === 'xixii' ? (
             <div>
               <div className="flex flex-col">
                 <div>1. English</div>
