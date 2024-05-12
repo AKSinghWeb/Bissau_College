@@ -1,6 +1,5 @@
 import { useSnackbar } from 'notistack'
 import { useState } from 'react'
-import Img from '../assets/logo.jpeg'
 
 const ApplicationForm = () => {
   const [formData, setFormData] = useState({
