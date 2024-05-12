@@ -1,3 +1,4 @@
+import { useSnackbar } from 'notistack'
 import { useState } from 'react'
 
 const ApplicationForm = () => {
@@ -22,9 +23,12 @@ const ApplicationForm = () => {
     marksObtained: '',
     year: '',
     board: '',
+    selectedType: 'degree',
     degreeMajorSubject: '',
     degreeMinorSubject: '',
+    xi_subject1: 'English',
     altEnglishOrMil: '',
+    xi_subject3: 'Environmental Science',
     optionalPapers: '',
     vocationalStream: '',
   })
@@ -37,11 +41,111 @@ const ApplicationForm = () => {
     })
   }
 
-  const [selectedType, setSelectedType] = useState('degree')
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const { enqueueSnackbar } = useSnackbar()
+  // const [success, setSuccess] = useState(false)
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
+
+    // Validation
+    if (
+      !formData.fullName ||
+      !formData.dateOfBirth ||
+      !formData.nationality ||
+      !formData.phoneNumber ||
+      !formData.fatherName ||
+      !formData.fatherPhoneNumber ||
+      !formData.motherName ||
+      !formData.motherPhoneNumber ||
+      !formData.homeAddress ||
+      !formData.schoolCollegeName ||
+      !formData.examinationName ||
+      !formData.rollNumber ||
+      !formData.division ||
+      !formData.marksObtained ||
+      !formData.year ||
+      !formData.board ||
+      !formData.selectedType ||
+      !formData.degreeMajorSubject ||
+      !formData.degreeMinorSubject
+    ) {
+      enqueueSnackbar('Please fill all the mandatory fields!', {
+        variant: 'error',
+        autoHideDuration: 3000,
+      })
+      return
+    }
+
     console.log(formData)
+
+    try {
+      setIsSubmitting(true)
+
+      const response = await fetch(
+        'https://script.google.com/macros/s/AKfycbzktbdbm-E0gK5A8CcfoD5o59KlZxugLageqWck4H6bUdgid6EI3HrqqpMD2WAClttI/exec',
+        {
+          redirect: 'follow',
+          method: 'POST',
+          body: JSON.stringify(formData),
+          headers: {
+            'Content-Type': 'text/plain;charset=utf-8',
+          },
+        }
+      )
+
+      if (!response.ok) {
+        throw new Error('Failed to submit form data')
+      }
+
+      enqueueSnackbar('Thank You, your data has been recorded!', {
+        variant: 'success',
+        autoHideDuration: 5000,
+      })
+
+      setIsSubmitting(false)
+
+      // Clear form data
+      setFormData({
+        fullName: '',
+        dateOfBirth: '',
+        gender: '',
+        category: '',
+        nationality: '',
+        phoneNumber: '',
+        fatherName: '',
+        fatherPhoneNumber: '',
+        motherName: '',
+        motherPhoneNumber: '',
+        localGuardian: '',
+        localGuardianPhoneNumber: '',
+        homeAddress: '',
+        schoolCollegeName: '',
+        examinationName: '',
+        rollNumber: '',
+        division: '',
+        marksObtained: '',
+        year: '',
+        board: '',
+        selectedType: 'degree',
+        degreeMajorSubject: '',
+        degreeMinorSubject: '',
+        xi_subject1: 'English',
+        altEnglishOrMil: '',
+        xi_subject3: 'Environmental Science',
+        optionalPapers: '',
+        vocationalStream: '',
+      })
+
+      // setSuccess(true)
+    } catch (error) {
+      console.error('Error submitting form data:', error)
+      setIsSubmitting(false)
+      enqueueSnackbar('Failed to submit, please try again!', {
+        variant: 'error',
+        autoHideDuration: 3000,
+      })
+    }
   }
 
   return (
@@ -49,21 +153,30 @@ const ApplicationForm = () => {
       <div className="flex justify-center p-20">
         <form className="border border-cyan-600 lg:w-[900px] p-20">
           <p className="text-4xl pb-5">Application Form for 2024-25</p>
+          <p className="text-lg pb-5">
+            {' '}
+            Fields marked with <span className="text-red-500">*</span> are
+            mandatory
+          </p>
           <div className="grid lg:grid-cols-2 gap-7">
             <Field
               label="Full Name of the Applicant"
               id="fullName"
               value={formData.fullName}
               onChange={handleInputChange}
+              required
             />
             <Field
               label="Date of Birth (as recorded in class X admit card)"
               id="dateOfBirth"
               value={formData.dateOfBirth}
               onChange={handleInputChange}
+              required
             />
             <div className="flex flex-col">
-              <label className="">Gender</label>
+              <label className="">
+                Gender<span className="text-red-500">*</span>
+              </label>
               <div className="flex gap-5">
                 <div className="flex items-center gap-2">
                   <input
@@ -105,42 +218,49 @@ const ApplicationForm = () => {
               id="category"
               value={formData.category}
               onChange={handleInputChange}
+              required
             />
             <Field
               label="Nationality"
               id="nationality"
               value={formData.nationality}
               onChange={handleInputChange}
+              required
             />
             <Field
               label="Phone Number"
               id="phoneNumber"
               value={formData.phoneNumber}
               onChange={handleInputChange}
+              required
             />
             <Field
               label="Father Name"
               id="fatherName"
               value={formData.fatherName}
               onChange={handleInputChange}
+              required
             />
             <Field
               label="Father's Phone Number"
               id="fatherPhoneNumber"
               value={formData.fatherPhoneNumber}
               onChange={handleInputChange}
+              required
             />
             <Field
               label="Mother Name"
               id="motherName"
               value={formData.motherName}
               onChange={handleInputChange}
+              required
             />
             <Field
               label="Mother's Phone Number"
               id="motherPhoneNumber"
               value={formData.motherPhoneNumber}
               onChange={handleInputChange}
+              required
             />
             <Field
               label="Local Guardian (In Shillong)"
@@ -159,48 +279,56 @@ const ApplicationForm = () => {
               id="homeAddress"
               value={formData.homeAddress}
               onChange={handleInputChange}
+              required
             />
             <Field
               label="Name and the place of institution attended last"
               id="schoolCollegeName"
               value={formData.schoolCollegeName}
               onChange={handleInputChange}
+              required
             />
             <Field
               label="Name of examination last taken"
               id="examinationName"
               value={formData.examinationName}
               onChange={handleInputChange}
+              required
             />
             <Field
               label="Roll Number"
               id="rollNumber"
               value={formData.rollNumber}
               onChange={handleInputChange}
+              required
             />
             <Field
               label="Division"
               id="division"
               value={formData.division}
               onChange={handleInputChange}
+              required
             />
             <Field
               label="% of marks obtained"
               id="marksObtained"
               value={formData.marksObtained}
               onChange={handleInputChange}
+              required
             />
             <Field
               label="Year"
               id="year"
               value={formData.year}
               onChange={handleInputChange}
+              required
             />
             <Field
               label="Board"
               id="board"
               value={formData.board}
               onChange={handleInputChange}
+              required
             />
           </div>
           <div className="py-10">
@@ -209,10 +337,10 @@ const ApplicationForm = () => {
               <div className="flex gap-20">
                 <div className="flex items-center gap-3">
                   <input
-                    checked={selectedType === 'degree' && true}
+                    checked={formData.selectedType === 'degree' && true}
                     type="radio"
                     onChange={() => {
-                      setSelectedType('degree')
+                      setFormData({ ...formData, selectedType: 'degree' })
                     }}
                     id="degree"
                     value="degree"
@@ -222,10 +350,10 @@ const ApplicationForm = () => {
                 </div>
                 <div className="flex items-center gap-3">
                   <input
-                    checked={selectedType === 'xixii' && true}
+                    checked={formData.selectedType === 'xixii' && true}
                     type="radio"
                     onChange={() => {
-                      setSelectedType('xixii')
+                      setFormData({ ...formData, selectedType: 'xixii' })
                     }}
                     id="xixii"
                     value="class_xi_xii"
@@ -237,7 +365,7 @@ const ApplicationForm = () => {
             </div>
           </div>
 
-          {selectedType === 'xixii' ? (
+          {formData.selectedType === 'xixii' ? (
             <div>
               <div className="flex flex-col">
                 <div>1. English</div>
@@ -295,8 +423,8 @@ const ApplicationForm = () => {
                   </span>
                 </p>
                 <p className="mt-4">
-                  Enter any one of the subjects from above as your Major
-                  Subject:
+                  Enter any one of the subjects from above as your Major Subject
+                  <span className="text-red-500">*</span>:
                 </p>
                 <input
                   type="text"
@@ -308,7 +436,7 @@ const ApplicationForm = () => {
                 />
                 <p className="mt-4">
                   Enter any other subject as your Minor Subject(except Major
-                  Subject):
+                  Subject)<span className="text-red-500">*</span>:
                 </p>
                 <input
                   type="text"
@@ -325,9 +453,10 @@ const ApplicationForm = () => {
           <div className="flex justify-center mt-10">
             <button
               onClick={handleSubmit}
-              className="bg-cyan-600 text-white px-5 py-2 rounded-md"
+              className={`bg-cyan-600 text-white px-5 py-2 rounded-sm"
+              ${isSubmitting ? 'cursor-not-allowed' : 'cursor-pointer'}`}
             >
-              Submit
+              {isSubmitting ? 'Please Wait...' : 'Submit'}
             </button>
           </div>
         </form>
@@ -338,11 +467,11 @@ const ApplicationForm = () => {
 
 export default ApplicationForm
 
-const Field = ({ label, id, value, onChange }) => {
+const Field = ({ label, id, value, onChange, required }) => {
   return (
     <div className="flex flex-col">
       <label htmlFor={id} className="">
-        {label}
+        {label} {required && <span className="text-red-500">*</span>}
       </label>
       <input
         type="text"

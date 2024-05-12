@@ -12,14 +12,16 @@ const Home = () => {
           className="w-full overflow-hidden h-[550px] max-md:h-[768px] max-md:overflow-x-hidden max-md:object-cover"
           alt=""
         />
-        <div className="absolute top-0 bottom-0 left-0 right-0 flex justify-center items-center">
+        <div className="absolute top-0 bottom-0 left-0  right-0 flex justify-center items-center">
           <button
             onClick={() => {
               navigate('/admission-2024-25')
             }}
-            className="button bg-white text-black p-5"
+            className="button rounded-md bg-white text-black p-5"
           >
             <span className="text-2xl font-bold p-5">Admission Open</span>{' '}
+            <br />
+            <span className="text-lg font-bold p-5">for 2024-25</span>
             <br />
             <span className="text-blue-600 font-bold">Click to apply</span>
           </button>

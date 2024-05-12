@@ -14,7 +14,7 @@ const Navbar = () => {
               <img src={Call} className="w-[20px]" alt="" />
             </div>
             <div>
-              <p className="lg:text-xl font-semibold">+916002021457</p>
+              <p className="lg:text-xl text-sm font-semibold">+916002021457</p>
             </div>
           </div>
           <div className="w-[1px] h-[30px] lg:h-[30px] bg-black"></div>
@@ -23,7 +23,9 @@ const Navbar = () => {
               <img src={Location} className="w-[20px]" alt="" />
             </div>
             <div>
-              <p className="lg:text-xl font-semibold">Laitumkhrah, Shillong</p>
+              <p className="lg:text-xl text-sm font-semibold">
+                Laitumkhrah, Shillong
+              </p>
             </div>
           </div>
         </div>
@@ -47,12 +49,18 @@ const Navbar = () => {
             </p>
           </div>
         </div>
-        <div className="flex text-xl items-center gap-5">
-          <Link to={'/'}>Home</Link>
-          <Link to={'/academics'}>Academics</Link>
-          <Link to={'/facilities'}>Facilities</Link>
-          <Link to={'/admission-2024-25'}>
-            <button className="p-2 px-5 rounded-full hover:bg-cyan-700 bg-cyan-600 text-white">
+        <div className="flex text-xl py-2 items-center gap-5">
+          <Link className="max-md:text-sm" to={'/'}>
+            Home
+          </Link>
+          <Link className="max-md:text-sm" to={'/academics'}>
+            Academics
+          </Link>
+          <Link className="max-md:text-sm" to={'/facilities'}>
+            Facilities
+          </Link>
+          <Link className="max-md:text-sm" to={'/admission-2024-25'}>
+            <button className="p-2 px-4 max-md:text-xs max-md:min-w-max rounded-full hover:bg-cyan-700 bg-cyan-600 text-white">
               Admission 2024-25
             </button>
           </Link>
