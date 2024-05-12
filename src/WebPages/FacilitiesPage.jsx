@@ -1,5 +1,9 @@
 const FacilitiesPage = () => {
-  return <div>FacilitiesPage</div>
+  return (
+    <div>
+      <div></div>
+    </div>
+  )
 }
 
 export default FacilitiesPage
