@@ -1,68 +1,82 @@
 import HeroImg from '../assets/BC_College.jpg'
 import Img1 from '../assets/BC_College.jpg'
 import '../App.css'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 const Home = () => {
   const navigate = useNavigate()
   return (
     <div>
-      <div className="relative">
+      {/* Hero Section */}
+      <div className='relative'>
         <img
+          data-aos='fade-down'
           src={HeroImg}
-          className="w-full overflow-hidden h-[550px] max-md:h-[768px] max-md:overflow-x-hidden max-md:object-cover"
-          alt=""
+          className='w-full overflow-hidden h-[550px] max-md:h-[768px] max-md:overflow-x-hidden max-md:object-cover'
+          alt=''
         />
-        <div className="absolute top-0 bottom-0 left-0  right-0 flex justify-center items-center">
-          <button
-            onClick={() => {
-              navigate('/admission-2024-25')
-            }}
-            className="button rounded-md bg-white text-black p-5"
-          >
-            <span className="text-2xl font-bold p-5">Admission Open</span>{' '}
-            <br />
-            <span className="text-lg font-bold p-5">for 2024-25</span>
-            <br />
-            <span className="text-blue-600 font-bold">Click to apply</span>
-          </button>
+        <div className='absolute top-0 bottom-0 left-0 right-0 flex justify-center items-center'>
+          <Link to={'/admission-2024-25'}>
+            <button
+              onClick={() => {
+                navigate('/admission-2024-25')
+              }}
+              className='button rounded-lg bg-cyan-600 text-white p-5'
+            >
+              <span className='text-2xl font-bold p-5'>Admission Open</span>{' '}
+              <br />
+              
+              <span className='text-gray-300 font-bold'>For 2024-2025</span>
+              <br />
+              <span className='text-white text-lg font-bold'>Click to apply</span>
+            </button>
+          </Link>
         </div>
       </div>
 
-      <div>
-        <div className="flex flex-col p-7 py-32 lg:py-[150px]">
-          <p className="text-center text-4xl font-extrabold p-3">
-            About The College
+      {/* Principal Desk Section */}
+      <div className='py-32 max-md:px-5 lg:px-[300px] lg:py-[150px]'>
+        <div data-aos='fade-up'>
+          <p className='text-4xl font-bold text-cyan-600'>
+            The Principal&apos;s Desk
           </p>
-          <p className="text-center text-lg lg:px-[300px]">
-            Bissau College established in the year 1993, is a renowned
-            educational institution located in Shillong, Meghalaya. It provides
-            a wide range of Degree programs, including 8 UG options. These
-            programs are delivered to students in Full Time mode, and are taught
-            by experienced faculty members. Students at the institute can choose
-            from various courses such as B.A., B.Com. These courses cover fields
-            like Humanities & Social Sciences, Accounting & Commerce, Teaching &
-            Education. The faculty at the Bissau College, are experts in
-            English. The institute aims to provide quality education at an
-            affordable fee, making it accessible to aspiring candidates with a
-            seat count of 720. Students have the opportunity to gain valuable
-            knowledge and skills in their chosen areas of interest.
-            Additionally, the institute offers excellent infrastructure
-            facilities to support students&apos; learning experiences.
+          <p className='py-3 max-md:text-justify lg:text-lg'>
+            Education is the basis of all progress. It is for this very reason
+            that Don Bosco College ventured into education about 31 years ago.
+            Over a three and a half decade of experience has taught us that
+            progress is possible only if men and women are equally
+            well-educated. <br /> <br />
+            The entire purpose of education is not to restrict itself to
+            imparting bookish knowledge only but to inculcate humanitarian
+            values like wisdom, compassion, courage, humility, integrity and
+            reliability in the students. <br />
+            <br />
+            All of us believe in holistic education, encompassing – academics,
+            co-curricular activities, sports education and life-skills learning.
+            Learning and teaching entails something more than providing academic
+            instructions. It is about nurturing the individual – academically,
+            spiritually, emotionally and physically – equipping students with
+            life-long skills to become compassionate and contributing citizens.
+            We strive to help students develop an understanding of the world,
+            their community and their role in it.
           </p>
         </div>
       </div>
 
-      <div className="pb-10">
-        <div className="flex max-sm:flex-col max-sm:gap-14 max-sm:p-3 justify-evenly">
-          <div className="p-10 bg-gray-200  max-w-4xl">
-            <p className="text-3xl font-extrabold text-center p-3">
+      {/* Goals and Objective Section */}
+      <div className='pb-10'>
+        <div
+          data-aos='fade-up'
+          className='flex max-sm:flex-col max-sm:gap-14 max-sm:p-3 justify-evenly'
+        >
+          <div className='p-10 bg-gray-200 rounded-md max-w-5xl'>
+            <p className='text-3xl font-extrabold text-cyan-600 text-center pb-7 p-3'>
               Goals & Objectives
             </p>
-            <p className="text-justify">
+            <p className='text-justify'>
               <ul
-                className="
-                list-disc list-inside flex flex-col gap-3
-              "
+                className='
+                list-disc list-inside flex flex-col gap-8
+              '
               >
                 <li>
                   To provide quality education to all aspiring students through
@@ -99,14 +113,16 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="pb-20 bg-white">
-        <p className="text-center text-3xl p-5 pt-20 font-extrabold">
-          Photo Gallery
-        </p>
-        <div className="flex max-sm:flex-col justify-evenly max-sm:gap-10 p-3">
-          <img src={Img1} className="lg:w-[400px] shadow-xl" alt="" />
-          <img src={Img1} className="lg:w-[400px] shadow-xl" alt="" />
-          <img src={Img1} className="lg:w-[400px] shadow-xl" alt="" />
+      <div className='pb-20 bg-white'>
+        <div data-aos='fade-up'>
+          <p className='text-center text-cyan-600 text-3xl p-5 pt-20 font-extrabold'>
+            Photo Gallery
+          </p>
+          <div className='flex max-sm:flex-col justify-evenly max-sm:gap-10 p-3'>
+            <img src={Img1} className='lg:w-[400px] shadow-xl' alt='' />
+            <img src={Img1} className='lg:w-[400px] shadow-xl' alt='' />
+            <img src={Img1} className='lg:w-[400px] shadow-xl' alt='' />
+          </div>
         </div>
       </div>
     </div>
